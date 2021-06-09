@@ -105,6 +105,16 @@ return [
             'path' => storage_path('logs/custom.log'),
             'level' => 'info',
         ],
+        'autotraderimportlog' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/auto_trader_import.log'),
+            'level' => 'debug',
+        ],
+        'renaultimportlog' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/renault_import.log'),
+            'level' => 'debug',
+        ],
     ],
 
 ];
