@@ -38,7 +38,7 @@ class Product extends Model
      */
     public function priceHistory()
     {
-        return $this->hasMany('App\Models\PriceHistory', 'productId')->limit(4)->orderBy('created_at', 'DESC');
+        return $this->hasMany('App\Models\PriceHistory', 'productId')->limit(4)->orderBy('scrape_date', 'DESC');
     }
 
     /**
@@ -47,7 +47,7 @@ class Product extends Model
      */
     public function mainImagesHistory()
     {
-        return $this->hasMany('App\Models\MainImagesHistory', 'productId');
+        return $this->hasMany('App\Models\MainImagesHistory', 'productId')->limit(4)->orderBy('scrape_date', 'DESC');
     }
 
     /**
@@ -56,6 +56,6 @@ class Product extends Model
      */
     public function thumbImageCountHistory()
     {
-        return $this->hasMany('App\Models\ThumbImageCountHistory', 'productId');
+        return $this->hasMany('App\Models\ThumbImageCountHistory', 'productId')->limit(4)->orderBy('scrape_date', 'DESC');
     }
 }
