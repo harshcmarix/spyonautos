@@ -15,6 +15,12 @@ class Product extends Model
     use HasFactory;
 
     /**
+     * Identify portal type
+     */
+    const PORTAL_TYPE_AUTOTRADER = 1;
+    const PORTAL_TYPE_RENAULT = 2;
+
+    /**
      * @var string
      */
     protected $table = 'products';

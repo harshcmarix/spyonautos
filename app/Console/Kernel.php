@@ -30,9 +30,12 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
-        $schedule->command('scraping:cron')
-            ->everyMinute();
-
+//        $schedule->command('scraping:cron')
+//            ->everyMinute();
+        $schedule->command('import:autoTraderImport')
+            ->everyMinute()->then(function () {
+                $this->call('import:renaultImport');
+            });
     }
 
     /**
