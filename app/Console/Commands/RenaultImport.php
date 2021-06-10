@@ -113,7 +113,7 @@ class RenaultImport extends Command
                         $productModel->scrape_date = !empty($productDetail['scrape_date']) ? $productDetail['scrape_date'] : null;
                     }
                     $productModel->listing_id = !empty($productDetail['listing_id']) ? $productDetail['listing_id'] : '';
-                    $productModel->listing_date = !empty($productDetail['listing_date']) ? $productDetail['listing_date'] : null;
+                    $productModel->listing_date = !empty($productDetail['listing_date']) ? date('Y-m-d', strtotime($productDetail['listing_date'])) : null;
                     $productModel->car_id = !empty($productDetail['car_id']) ? $productDetail['car_id'] : 0;
                     $productModel->reg_year = !empty($productDetail['reg_year']) ? $productDetail['reg_year'] : '';
                     $productModel->body_type = !empty($productDetail['body_type']) ? $productDetail['body_type'] : '';

@@ -553,12 +553,12 @@ class ProductController extends Controller
 //                    $productModel->review_score = !empty($productDetail['review_score']) ? $productDetail['review_score'] : '';
 //                    $productModel->review_count = !empty($productDetail['review_count']) ? $productDetail['review_count'] : 0;
 //                    $productModel->url = !empty($productDetail['url']) ? $productDetail['url'] : '';
-//                      // Add scrape date only once
-//                      if ($isProductInsert == true) {
+//                    // Add scrape date only once
+//                    if ($isProductInsert == true) {
 //                        $productModel->scrape_date = !empty($productDetail['scrape_date']) ? $productDetail['scrape_date'] : null;
-//                      }
+//                    }
 //                    $productModel->listing_id = !empty($productDetail['listing_id']) ? $productDetail['listing_id'] : '';
-//                    $productModel->listing_date = !empty($productDetail['listing_date']) ? $productDetail['listing_date'] : null;
+//                    $productModel->listing_date = !empty($productDetail['listing_date']) ? date('Y-m-d', strtotime($productDetail['listing_date'])) : null;
 //                    $productModel->car_id = !empty($productDetail['car_id']) ? $productDetail['car_id'] : 0;
 //                    $productModel->reg_year = !empty($productDetail['reg_year']) ? $productDetail['reg_year'] : '';
 //                    $productModel->body_type = !empty($productDetail['body_type']) ? $productDetail['body_type'] : '';
@@ -691,12 +691,12 @@ class ProductController extends Controller
 //                    $productModel->review_score = !empty($productDetail['review_score']) ? $productDetail['review_score'] : '';
 //                    $productModel->review_count = !empty($productDetail['review_count']) ? $productDetail['review_count'] : 0;
 //                    $productModel->url = !empty($productDetail['url']) ? $productDetail['url'] : '';
-//                      // Add scrape date only once
-//                      if ($isProductInsert == true) {
+//                    // Add scrape date only once
+//                    if ($isProductInsert == true) {
 //                        $productModel->scrape_date = !empty($productDetail['scrape_date']) ? $productDetail['scrape_date'] : null;
-//                      }
+//                    }
 //                    $productModel->listing_id = !empty($productDetail['listing_id']) ? $productDetail['listing_id'] : '';
-//                    $productModel->listing_date = !empty($productDetail['listing_date']) ? $productDetail['listing_date'] : null;
+//                    $productModel->listing_date = !empty($productDetail['listing_date']) ? date('Y-m-d', strtotime($productDetail['listing_date'])) : null;
 //                    $productModel->car_id = !empty($productDetail['car_id']) ? $productDetail['car_id'] : 0;
 //                    $productModel->reg_year = !empty($productDetail['reg_year']) ? $productDetail['reg_year'] : '';
 //                    $productModel->body_type = !empty($productDetail['body_type']) ? $productDetail['body_type'] : '';
