@@ -33,9 +33,13 @@ class Kernel extends ConsoleKernel
 //        $schedule->command('scraping:cron')
 //            ->everyMinute();
         $schedule->command('import:autoTraderImport')
-            ->everyMinute()->then(function () {
-                $this->call('import:renaultImport');
-            });
+            ->everyMinute();
+        $schedule->command('import:renaultImport')
+            ->everyMinute();
+//        $schedule->command('import:autoTraderImport')
+//            ->everyMinute()->then(function () {
+//                $this->call('import:renaultImport');
+//            });
     }
 
     /**
