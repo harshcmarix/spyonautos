@@ -247,6 +247,7 @@ trait ScrapingTrait
     public function insertProductFlags(int $productId, array $flags, string $scrapeDate): bool
     {
         if (!empty($productId) && !empty($flags) && !empty($scrapeDate)) {
+            $productFlags = [];
             foreach ($flags as $flag) {
 //                $productFlagModel = new ProductFlag();
 //                $productFlagModel->productId = $productId;
@@ -259,8 +260,9 @@ trait ScrapingTrait
                 $flagData['scrape_date'] = $scrapeDate;
                 $flagData['created_at'] = date('Y-m-d H:i:s');
                 $flagData['updated_at'] = date('Y-m-d H:i:s');
-                DB::table('product_flags')->insert($flagData);
+                $productFlags[] = $flagData;
             }
+            DB::table('product_flags')->insert($productFlags);
 
             return true;
         }
@@ -289,6 +291,7 @@ trait ScrapingTrait
 
             if (!empty($arrayDiff1) || !empty($arrayDiff2)) {
                 DB::table('product_flags')->where('productId', $productId)->delete();
+                $productFlags = [];
                 foreach ($flags as $flag) {
 //                    $productFlagModel = new ProductFlag();
 //                    $productFlagModel->productId = $productId;
@@ -301,8 +304,9 @@ trait ScrapingTrait
                     $flagData['scrape_date'] = $scrapeDate;
                     $flagData['created_at'] = date('Y-m-d H:i:s');
                     $flagData['updated_at'] = date('Y-m-d H:i:s');
-                    DB::table('product_flags')->insert($flagData);
+                    $productFlags[] = $flagData;
                 }
+                DB::table('product_flags')->insert($productFlags);
             }
 
             return true;

@@ -52,8 +52,6 @@ class AutoTraderImportProcess implements ShouldQueue
      */
     public function handle()
     {
-//        ini_set('memory_limit', '1G');
-//        ini_set('max_execution_time', '0');
         $portal = Product::PORTAL_TYPE_AUTOTRADER;
         $products = $this->products;
         if (!empty($products)) {
@@ -106,10 +104,12 @@ class AutoTraderImportProcess implements ShouldQueue
                 }
 
                 if ($isProductInsert == true) {
+                    $scrapeDate = $productDetail['scrape_date'];
                     $product = Product::create($productDetail);
                     $productId = DB::getPdo()->lastInsertId();
                 } else {
                     $productId = $productModel->id;
+                    $scrapeDate = $productDetail['scrape_date'];
                     // Not update scrape date
                     unset($productDetail['scrape_date']);
 
@@ -122,45 +122,45 @@ class AutoTraderImportProcess implements ShouldQueue
                 if (!empty($productId)) {
                     // Insert product price history
                     if (!empty($productDetail['price']) && $productDetail['price'] != $oldPrice) {
-                        $this->insertProductPriceHistory($productId, $productDetail['price'], $productDetail['scrape_date']);
+                        $this->insertProductPriceHistory($productId, $productDetail['price'], $scrapeDate);
                     }
 
                     // Insert product video history
                     if (!empty($productDetail['has_video']) && $productDetail['has_video'] != $oldHasVideo) {
-                        $this->insertProductVideoHistory($productId, $productDetail['has_video'], $productDetail['scrape_date']);
+                        $this->insertProductVideoHistory($productId, $productDetail['has_video'], $scrapeDate);
                     }
 
                     // Insert product thumb image count history
                     if (!empty($thumbnails) && count($thumbnails) != $oldThumbImageCount) {
-                        $this->insertProductThumbImageCountHistory($productId, count($thumbnails), $productDetail['scrape_date']);
+                        $this->insertProductThumbImageCountHistory($productId, count($thumbnails), $scrapeDate);
                     }
 
                     // Insert product main image and it's history
                     if (!empty($productDetail['main_image']) && $productDetail['main_image'] != $oldMainImage) {
-                        $this->insertProductMainImage($productId, $productDetail['main_image'], $productDetail['scrape_date']);
+                        $this->insertProductMainImage($productId, $productDetail['main_image'], $scrapeDate);
                     }
 
                     if ($isProductInsert == false) {
                         // Update product thumb images
                         if (!empty($thumbnails)) {
-                            $this->updateProductThumbImages($productId, $thumbnails, $productDetail['scrape_date']);
+                            $this->updateProductThumbImages($productId, $thumbnails, $scrapeDate);
                         }
                     } else {
                         // Insert product thumb images
                         if (!empty($thumbnails)) {
-                            $this->insertProductThumbImages($productId, $thumbnails, $productDetail['scrape_date']);
+                            $this->insertProductThumbImages($productId, $thumbnails, $scrapeDate);
                         }
                     }
 
                     if ($isProductInsert == false) {
                         // Update product flags
                         if (!empty($flags)) {
-                            $this->updateProductFlags($productId, $flags, $productDetail['scrape_date']);
+                            $this->updateProductFlags($productId, $flags, $scrapeDate);
                         }
                     } else {
                         // Insert product flags
                         if (!empty($flags)) {
-                            $this->insertProductFlags($productId, $flags, $productDetail['scrape_date']);
+                            $this->insertProductFlags($productId, $flags, $scrapeDate);
                         }
                     }
                 }

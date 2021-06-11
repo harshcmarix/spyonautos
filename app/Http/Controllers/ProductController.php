@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\AutoTraderImportProcess;
+use App\Models\Job;
 use File;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Log;
@@ -496,33 +497,38 @@ class ProductController extends Controller
      */
     public function index()
     {
-//        $filePath = storage_path() . "/json_files/" . config('constants.autotrader_file_name');
-//        /* ################### Read Auto Trader Product Start ################### */
-//        try {
-//            $content = file_get_contents($filePath);
-//            $content = str_replace("}
-//{", '},{', $content);
-//            $content = '[' . $content . ']';
-//            $products = json_decode($content, true);
-//            $productChunks = array_chunk($products, 1000);
-//            if (!empty($productChunks)) {
-//                foreach ($productChunks as $productChunkKey => $productChunkValue) {
-//                    AutoTraderImportProcess::dispatch($productChunkValue);
-//                }
-//            }
-//
-//            return true;
-//        } catch (\Exception $e) {
-//            $message = $e->getMessage() . ' in ' . $e->getFile() . ' at line no.' . $e->getLine();
-//            Log::channel('customlog')->error($message);
-//        } catch (\Throwable $e) {
-//            $message = $e->getMessage() . ' in ' . $e->getFile() . ' at line no.' . $e->getLine();
-//            Log::channel('customlog')->error($message);
-//        }
-//        /* ################### Read Auto Trader Product End ################### */
-//
-//        return false;
-        
+//        $j = Job::select('payload')->get();
+//        $aw = json_decode($j[0]->payload)->data->command;
+//        $cm = unserialize($aw);
+//        p($cm);
+
+        $filePath = storage_path() . "/json_files/" . config('constants.autotrader_file_name');
+        /* ################### Read Auto Trader Product Start ################### */
+        try {
+            $content = file_get_contents($filePath);
+            $content = str_replace("}
+{", '},{', $content);
+            $content = '[' . $content . ']';
+            $products = json_decode($content, true);
+            $productChunks = array_chunk($products, 1000);
+            if (!empty($productChunks)) {
+                foreach ($productChunks as $productChunkKey => $productChunkValue) {
+                    AutoTraderImportProcess::dispatch($productChunkValue);
+                }
+            }
+
+            return true;
+        } catch (\Exception $e) {
+            $message = $e->getMessage() . ' in ' . $e->getFile() . ' at line no.' . $e->getLine();
+            Log::channel('customlog')->error($message);
+        } catch (\Throwable $e) {
+            $message = $e->getMessage() . ' in ' . $e->getFile() . ' at line no.' . $e->getLine();
+            Log::channel('customlog')->error($message);
+        }
+        /* ################### Read Auto Trader Product End ################### */
+
+        return false;
+
 //        $filePath = storage_path() . "/json_files/" . config('constants.autotrader_file_name');
 //        ini_set('memory_limit', '500M');
 //        /* ################### Read Auto Trader Product Start ################### */
@@ -586,6 +592,7 @@ class ProductController extends Controller
 //        /* ################### Import Auto Trader Product End ################### */
 //
 //        return false;
+
         p("Working");
 
 //        $portal = Product::PORTAL_TYPE_AUTOTRADER;
