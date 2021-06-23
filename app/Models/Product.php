@@ -29,8 +29,7 @@ class Product extends Model
      * @var string[]
      */
     protected $fillable = [
-        'name', 'description', 'portal', 'reg_date', 'price', 'thumb_image_count', 'image_count', 'main_image', 'location', 'seller', 'review_score', 'review_count', 'url', 'scrape_date', 'has_video', 'listing_id', 'listing_date', 'car_id', 'reg_year', 'body_type', 'mileage', 'engine', 'hp', 'transmission', 'fuel', 'vrm'
-    ];
+        'name', 'description', 'portal', 'reg_date', 'price', 'thumb_image_count', 'image_count', 'main_image', 'location', 'seller', 'review_score', 'review_count', 'url', 'scrape_date', 'has_video', 'listing_id', 'listing_date', 'car_id', 'reg_year', 'body_type', 'mileage', 'engine', 'hp', 'transmission', 'fuel', 'vrm'];
 
     /**
      * Get price history

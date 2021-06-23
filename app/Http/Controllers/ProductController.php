@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\AutoTraderImportProcess;
+use App\Mail\ProductImportFail;
+use App\Mail\ProductImportStart;
+use App\Mail\ProductImportSuccess;
 use App\Models\Job;
+use App\Models\PriceHistory;
 use File;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\LazyCollection;
 use Image;
 use App\Models\Product;
