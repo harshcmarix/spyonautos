@@ -58,10 +58,11 @@
                                     <h1 style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; color: #3d4852; font-size: 18px; font-weight: bold; margin-top: 0; text-align: left;">
                                         Hello {{config('constants.product_import_notify_user_name')}},</h1>
                                     <p style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: left;">
-                                        Your product import process is failed due to some unknown reason. Please check
+                                        Your {{$importType}} product import process is failed due to some unknown
+                                        reason. Please check
                                         <strong>laravel.log</strong>, <strong>auto_trader_import.log</strong>, or
                                         <strong>renault_import.log</strong> file at
-                                        <strong>{{storage_path('logs')}}</strong> directory.</p>
+                                        <strong>{{storage_path('logs')}}</strong> directory for error.</p>
                                     <p style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: left;">
                                         Regards,<br>
                                         Spyonautos</p>

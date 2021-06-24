@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\Product;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -15,13 +16,25 @@ class ProductImportSuccess extends Mailable
     use Queueable, SerializesModels;
 
     /**
+     * Identify import type
+     * @var string
+     */
+    public $importType = '';
+
+    /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($portal)
     {
-        //
+        $this->importType = '';
+        if ($portal == Product::PORTAL_TYPE_AUTOTRADER) {
+            $this->importType = 'auto-trader';
+        }
+        if ($portal == Product::PORTAL_TYPE_RENAULT) {
+            $this->importType = 'renault';
+        }
     }
 
     /**

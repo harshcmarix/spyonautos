@@ -62,7 +62,7 @@ class AutoTraderImport extends Command
         /* ################### Import Auto Trader Product Start ################### */
         try {
             // Send notification email to administrator when product import start
-            Mail::to(config('constants.product_import_notify_email'))->send(new ProductImportStart());
+            Mail::to(config('constants.product_import_notify_email'))->send(new ProductImportStart($portal));
 
             $content = file_get_contents($filePath);
             $content = str_replace("}
@@ -192,7 +192,7 @@ class AutoTraderImport extends Command
             Log::channel('autotraderimportlog')->info($message);
 
             // Send notification email to administrator when product import success
-            Mail::to(config('constants.product_import_notify_email'))->send(new ProductImportSuccess());
+            Mail::to(config('constants.product_import_notify_email'))->send(new ProductImportSuccess($portal));
 
             return true;
         } catch (\Exception $e) {
@@ -200,13 +200,13 @@ class AutoTraderImport extends Command
             Log::channel('autotraderimportlog')->error($message);
 
             // Send notification email to administrator when product import fail
-            Mail::to(config('constants.product_import_notify_email'))->send(new ProductImportFail());
+            Mail::to(config('constants.product_import_notify_email'))->send(new ProductImportFail($portal));
         } catch (\Throwable $e) {
             $message = $e->getMessage() . ' in ' . $e->getFile() . ' at line no.' . $e->getLine();
             Log::channel('autotraderimportlog')->error($message);
 
             // Send notification email to administrator when product import fail
-            Mail::to(config('constants.product_import_notify_email'))->send(new ProductImportFail());
+            Mail::to(config('constants.product_import_notify_email'))->send(new ProductImportFail($portal));
         }
         /* ################### Import Auto Trader Product End ################### */
 
