@@ -192,11 +192,11 @@ class RenaultImport extends Command
                 }
             }
 
+            $message = 'Renault product import end';
+            Log::channel('renaultimportlog')->info($message);
+
             // Send notification email to administrator when product import success
             Mail::to(config('constants.product_import_notify_email'))->send(new ProductImportSuccess());
-
-            $message = 'Auto trader product import end';
-            Log::channel('autotraderimportlog')->info($message);
 
             return true;
         } catch (\Exception $e) {
